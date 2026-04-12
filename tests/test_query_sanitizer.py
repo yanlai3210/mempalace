@@ -112,6 +112,7 @@ class TestTailSentence:
         query = ("Prefix text " * 30) + '\n"' + ("x" * 260) + '"'
         result = sanitize_query(query)
         assert result["method"] == "tail_sentence"
+        assert result["clean_query"] == "x" * MAX_QUERY_LENGTH
         assert not result["clean_query"].startswith('"')
         assert not result["clean_query"].endswith('"')
         assert len(result["clean_query"]) <= MAX_QUERY_LENGTH
